@@ -1,7 +1,6 @@
 ---
 title: "Programación en R"
 author: '@jrcajide'
-date: "6 de marzo de 2016"
 output: github_document
 ---
 
@@ -177,6 +176,18 @@ temp(4,6)
 
 **Fahrenheit => Kelvin**
 `K = (F - 32) * 5/9 + 273.15`
+
+```{r eval=FALSE}
+fahr_to_kelvin <- function(...) {
+  kelvin <- ...
+  return(...)
+}
+# Temperatura a la que se congela el agua
+fahr_to_kelvin(32) 
+# Temperatura a la que hierve
+fahr_to_kelvin(212)
+```
+**Solución:**
 ```{r}
 fahr_to_kelvin <- function(temp) {
   kelvin <- ((temp - 32) * (5 / 9)) + 273.15
@@ -190,18 +201,41 @@ fahr_to_kelvin(212)
 
 **Kelvin => Celsius**
 `C = K - 273.15`
+```{r eval=FALSE}
+kelvin_to_celsius <- function(...) {
+  celsius <- ...
+  return(...)
+}
+
+#cero
+kelvin_to_celsius(0)
+```
+
+**Solución:**
 ```{r}
 kelvin_to_celsius <- function(temp) {
   celsius <- temp - 273.15
   return(celsius)
 }
 
-#absolute zero in Celsius
+#cero
 kelvin_to_celsius(0)
 ```
 
 #### Vuestro reto: Convertir de Fahrenheit a Celsius sin conocer cual es su fórmula
 **Fahrenheit => Celsius**
+```{r eval=FALSE}
+fahr_to_celsius <- function(...) {
+  temp_k <- ...
+  result <- ...
+  return(result)
+}
+
+# 
+fahr_to_celsius(32.0)
+paste('El agua se congela a', fahr_to_celsius(32.0), 'grados centígrados y hierve a', fahr_to_celsius(212.0))
+```
+**Solución:**
 ```{r}
 fahr_to_celsius <- function(temp) {
   temp_k <- fahr_to_kelvin(temp)
@@ -211,7 +245,6 @@ fahr_to_celsius <- function(temp) {
 
 # 
 fahr_to_celsius(32.0)
-paste('El agua se congela a', fahr_to_celsius(32.0), 'grados centígrados y se congela a', fahr_to_celsius(212.0))
+paste('El agua se congela a', fahr_to_celsius(32.0), 'grados centígrados y hierve a', fahr_to_celsius(212.0))
 ```
-
 

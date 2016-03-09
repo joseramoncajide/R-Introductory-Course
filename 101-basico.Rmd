@@ -1,7 +1,6 @@
 ---
 title: "Tipos de datos y estructuras en R"
 author: '@jrcajide'
-date: "9 de marzo de 2016"
 output: github_document
 ---
 
@@ -67,7 +66,7 @@ y <- c(TRUE, TRUE, FALSE, FALSE)
 z <- c("Oro", "Plata", "Bronce", "Cobre")
 class(z)
 
-z <- c(z, "Annette")
+z <- c(z, "Platino")
 z
 
 x <- c(0.5, 0.7)
