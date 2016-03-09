@@ -1,7 +1,6 @@
 ---
 title: "Manipulación de datos en R con dplyr"
 author: '@jrcajide'
-date: "8 de marzo de 2016"
 output: github_document
 ---
 
