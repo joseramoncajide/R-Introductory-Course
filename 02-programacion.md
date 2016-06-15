@@ -1,21 +1,15 @@
----
-title: "Programación en R"
-author: '@jrcajide'
-output: github_document
----
+Programación en R
+================
+@jrcajide
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+Estructuras de control
+----------------------
 
-
-## Estructuras de control
-
-* `if`,`else`,`for`,`while`,`repeat`,`break`,`next`,`return`
+-   `if`,`else`,`for`,`while`,`repeat`,`break`,`next`,`return`
 
 #### if, else
 
-```{r eval=FALSE}
+``` r
 if (condition) {
     # haz algo
 } else {
@@ -24,7 +18,8 @@ if (condition) {
 ```
 
 **Ejemplo:**
-```{r if-else}
+
+``` r
 x <- 1:15
 if (sample(x, 1) <= 10) {
     print("x es menor que 10")
@@ -33,66 +28,140 @@ if (sample(x, 1) <= 10) {
 }
 ```
 
+    ## [1] "x es menor que 10"
+
 **El método de R:**
-```{r}
+
+``` r
 ifelse(x <= 10, "x es menor que 10", "x es mayor que 10")
 ```
 
+    ##  [1] "x es menor que 10" "x es menor que 10" "x es menor que 10"
+    ##  [4] "x es menor que 10" "x es menor que 10" "x es menor que 10"
+    ##  [7] "x es menor que 10" "x es menor que 10" "x es menor que 10"
+    ## [10] "x es menor que 10" "x es mayor que 10" "x es mayor que 10"
+    ## [13] "x es mayor que 10" "x es mayor que 10" "x es mayor que 10"
+
 #### for
 
-```{r}
+``` r
 for (indice in 1:10) {
     print(indice)
 }
 ```
 
+    ## [1] 1
+    ## [1] 2
+    ## [1] 3
+    ## [1] 4
+    ## [1] 5
+    ## [1] 6
+    ## [1] 7
+    ## [1] 8
+    ## [1] 9
+    ## [1] 10
+
 **Ejemplos:**
 
-```{r}
+``` r
 x <- c("apples", "oranges", "bananas", "strawberries", 'hola')
 
 
 for (i in 1:4) {
     print(x[i])
 }
+```
 
+    ## [1] "apples"
+    ## [1] "oranges"
+    ## [1] "bananas"
+    ## [1] "strawberries"
+
+``` r
 for (i in seq(x)) {
     print(x[i])
 }
+```
+
+    ## [1] "apples"
+    ## [1] "oranges"
+    ## [1] "bananas"
+    ## [1] "strawberries"
+    ## [1] "hola"
+
+``` r
 # Sin llaves
 for (i in seq(x))   print(x[i])
 ```
 
+    ## [1] "apples"
+    ## [1] "oranges"
+    ## [1] "bananas"
+    ## [1] "strawberries"
+    ## [1] "hola"
+
 #### loops
+
 **Ejemplos:**
-```{r}
+
+``` r
 m <- matrix(1:10, 2)
 # m:
 m
+```
+
+    ##      [,1] [,2] [,3] [,4] [,5]
+    ## [1,]    1    3    5    7    9
+    ## [2,]    2    4    6    8   10
+
+``` r
 for (i in seq(nrow(m))) {
     for (j in seq(ncol(m))) {
         print(m[i, j])
     }
 }
-
 ```
+
+    ## [1] 1
+    ## [1] 3
+    ## [1] 5
+    ## [1] 7
+    ## [1] 9
+    ## [1] 2
+    ## [1] 4
+    ## [1] 6
+    ## [1] 8
+    ## [1] 10
 
 #### while
 
 **Ejemplo:**
-```{r}
+
+``` r
 i <- 1
 while (i < 10) {
     print(i)
     i <- i + 1
 }
 ```
+
+    ## [1] 1
+    ## [1] 2
+    ## [1] 3
+    ## [1] 4
+    ## [1] 5
+    ## [1] 6
+    ## [1] 7
+    ## [1] 8
+    ## [1] 9
+
 Asegúrate siempre de que hay una salida dentro de un while
 
 #### repeat y break
 
 **Ejemplo:**
-```{r eval=FALSE}
+
+``` r
 repeat {
     # simulations; generate some value have an expectation if within some range,
     # then exit the loop
@@ -103,9 +172,10 @@ repeat {
 ```
 
 #### next
-**Ejemplo:**
-`%%`: División de enteros
-```{r}
+
+**Ejemplo:** `%%`: División de enteros
+
+``` r
 for (i in 1:20) {
     if (i%%2 == 1) {
         next
@@ -115,35 +185,53 @@ for (i in 1:20) {
 }
 ```
 
+    ## [1] 2
+    ## [1] 4
+    ## [1] 6
+    ## [1] 8
+    ## [1] 10
+    ## [1] 12
+    ## [1] 14
+    ## [1] 16
+    ## [1] 18
+    ## [1] 20
+
 Veremos otras funciones que nos permitirán evitir el uso de este tipo de estructuras, generalmente poco efecientes en término de redmiento.
 
-------
+------------------------------------------------------------------------
 
-
-## Funciones
+Funciones
+---------
 
 Si tienes que repetir los mismo más de dos veces, crea una función
 
-* Las funciones en R son también objetos 
-
+-   Las funciones en R son también objetos
 
 ### Una función
 
-```{r}
+``` r
 suma <- function(x, y) {
     z <- x + y
     return(z)
 }
 suma(2,8)
 ```
+
+    ## [1] 10
+
 **Aplicación:**
-```{r}
+
+``` r
 vector <- c(3, 4, 5, 6)
 
 sapply(vector, suma, 2)
 ```
+
+    ## [1] 5 6 7 8
+
 **¿Qué devuelve la siguiente función?**
-```{r eval=FALSE}
+
+``` r
 x <- 5
 f <- function() {
     y <- 10
@@ -151,8 +239,10 @@ f <- function() {
 }
 f()
 ```
+
 **¿y esta??**
-```{r eval=FALSE}
+
+``` r
 x <- 5
 g <- function() {
     x <- 20
@@ -163,21 +253,27 @@ g()
 ```
 
 #### Funciones con valores predefinidos
-```{r}
+
+``` r
 temp <- function(a = 1, b = 2) {
     return(a + b)
 }
 temp()
+```
+
+    ## [1] 3
+
+``` r
 temp(4,6)
 ```
 
+    ## [1] 10
 
 ### Vamos a programar funciones.
 
-**Fahrenheit => Kelvin**
-`K = (F - 32) * 5/9 + 273.15`
+**Fahrenheit =&gt; Kelvin** `K = (F - 32) * 5/9 + 273.15`
 
-```{r eval=FALSE}
+``` r
 fahr_to_kelvin <- function(F) {
   kelvin <- (F - 32) * 5/9 + 273.15
   return(kelvin)
@@ -188,10 +284,9 @@ fahr_to_kelvin(32)
 fahr_to_kelvin(212)
 ```
 
+**Kelvin =&gt; Celsius** `C = K - 273.15`
 
-**Kelvin => Celsius**
-`C = K - 273.15`
-```{r eval=FALSE}
+``` r
 kelvin_to_celsius <- function(K) {
   celsius <- K - 273.15
   return(celsius)
@@ -201,11 +296,11 @@ kelvin_to_celsius <- function(K) {
 kelvin_to_celsius(0)
 ```
 
-
-
 #### Vuestro reto: Convertir de Fahrenheit a Celsius sin conocer cual es su fórmula
-**Fahrenheit => Celsius**
-```{r eval=FALSE}
+
+**Fahrenheit =&gt; Celsius**
+
+``` r
 fahr_to_celsius <- function(temperatura) {
   temp_k <- fahr_to_kelvin(temperatura)
   result <- kelvin_to_celsius(temp_k)
@@ -216,5 +311,3 @@ fahr_to_celsius <- function(temperatura) {
 fahr_to_celsius(32.0)
 paste('El agua se congela a', fahr_to_celsius(32.0), 'grados centígrados y hierve a', fahr_to_celsius(212.0))
 ```
-
-
